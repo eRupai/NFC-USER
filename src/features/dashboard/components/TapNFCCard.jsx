@@ -2,7 +2,7 @@ import { Radio, RefreshCw, Smartphone } from "lucide-react";
 
 const SUPPORTED_CARDS = ["NTAG213", "NTAG215", "NTAG216", "MIFARE", "Ultralight", "DESFire"];
 
-export default function TapNFCCard() {
+export default function TapNFCCard({ onOpen }) {
   return (
     <div className="bg-white border border-red-100 rounded-xl p-4 shadow-sm">
       <h2 className="text-red-900 font-bold text-sm mb-0.5 flex items-center gap-2">
@@ -37,7 +37,7 @@ export default function TapNFCCard() {
           <p className="text-red-900 text-xs font-semibold">Card Information</p>
           <button className="text-red-400 hover:text-red-700 transition-colors"><RefreshCw className="w-3.5 h-3.5" /></button>
         </div>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 mb-3">
           {[["Status", "No Card Detected"], ["UID", "--"], ["Card Type", "--"], ["Memory Size", "--"]].map(([l, v]) => (
             <div key={l} className="flex items-center gap-1.5 text-xs">
               <span className="text-red-400 w-16 flex-shrink-0 text-[10px]">{l}</span>
@@ -45,6 +45,10 @@ export default function TapNFCCard() {
             </div>
           ))}
         </div>
+        <button onClick={() => onOpen("scan")}
+          className="w-full bg-rose-700 hover:bg-rose-600 text-white text-xs font-bold py-2.5 rounded-xl transition-colors shadow-md shadow-rose-200">
+          Scan Card →
+        </button>
       </div>
     </div>
   );

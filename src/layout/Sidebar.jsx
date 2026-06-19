@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   ChevronDown, ChevronUp, Zap, Crown, ArrowRight, X, Radio, Settings,
 } from "lucide-react";
+
+// ─── NAV CONFIG (inline for self-contained example) ──────────────────────────
+// Replace with your actual import: import { NAV, MOBILE_RAIL } from "../shared/constants/navConfig";
 import { NAV, MOBILE_RAIL } from "../shared/constants/navConfig";
 
 // ─── FULL SIDEBAR CONTENT ────────────────────────────────────────────────────
@@ -231,16 +234,19 @@ export default function Sidebar({ activeItem, setActiveItem }) {
 
   return (
     <>
+      {/* ── Desktop: sticky full sidebar, NO hamburger needed ── */}
       <div className="hidden lg:flex h-screen sticky top-0 flex-shrink-0">
         <SidebarContent activeItem={activeItem} setActiveItem={setActiveItem} onClose={null} />
       </div>
 
+      {/* ── Mobile: icon rail only ── */}
       <MobileIconRail
         activeItem={activeItem}
         setActiveItem={setActiveItem}
         onOpenDrawer={() => setDrawerOpen(true)}
       />
 
+      {/* ── Mobile: backdrop ── */}
       {drawerOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-red-950/40 backdrop-blur-sm z-40"
@@ -248,6 +254,7 @@ export default function Sidebar({ activeItem, setActiveItem }) {
         />
       )}
 
+      {/* ── Mobile: slide-in drawer ── */}
       <div className={`
         lg:hidden fixed inset-y-0 left-0 z-50
         transform transition-transform duration-300 ease-in-out

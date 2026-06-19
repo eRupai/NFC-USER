@@ -6,7 +6,7 @@ import {
 } from "recharts";
 import { scanData, locationData, deviceData, recentActivity, TOOLTIP_STYLE } from "../data/dashboardData";
 
-export default function LiveAnalytics() {
+export default function LiveAnalytics({ onOpen }) {
   const [range, setRange] = useState("This Month");
 
   return (
@@ -16,7 +16,7 @@ export default function LiveAnalytics() {
       <div className="bg-white border border-red-100 rounded-xl p-4 shadow-sm">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-red-900 font-semibold text-sm flex items-center gap-2">
-            <Activity className="w-4 h-4 text-red-500" />Live Scan Analytics
+            <Activity className="w-4 h-4 text-red-500" />My Scan Analytics
           </h3>
           <select value={range} onChange={e => setRange(e.target.value)}
             className="bg-red-50 border border-red-200 text-red-600 text-[10px] rounded px-2 py-1 outline-none cursor-pointer">
@@ -121,7 +121,10 @@ export default function LiveAnalytics() {
         </div>
         <h3 className="text-red-900 font-bold text-sm mb-1">Go Unlimited!</h3>
         <p className="text-red-500 text-xs mb-3">Upgrade and unlock all premium features.</p>
-        <button className="w-full bg-red-600 hover:bg-red-500 text-white text-xs font-bold py-2.5 rounded-lg transition-colors shadow-md shadow-red-200">Upgrade Now</button>
+        <button onClick={() => onOpen("upgrade")}
+          className="w-full bg-red-600 hover:bg-red-500 text-white text-xs font-bold py-2.5 rounded-lg transition-colors shadow-md shadow-red-200">
+          Upgrade Now
+        </button>
       </div>
     </div>
   );

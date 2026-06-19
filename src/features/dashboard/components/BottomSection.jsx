@@ -1,7 +1,7 @@
 import { CreditCard, LayoutTemplate } from "lucide-react";
 import { recentCards, templatesList, quickActions, footerFeatures } from "../data/dashboardData";
 
-export default function BottomSection() {
+export default function BottomSection({ onOpen }) {
   return (
     <div className="px-3 sm:px-4 pb-5 space-y-3">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -10,7 +10,7 @@ export default function BottomSection() {
         <div className="bg-white border border-red-100 rounded-xl p-4 shadow-sm">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-red-900 font-semibold text-sm flex items-center gap-2">
-              <CreditCard className="w-4 h-4 text-red-500" />Recent Cards
+              <CreditCard className="w-4 h-4 text-red-500" />My Recent Cards
             </h3>
             <button className="text-red-500 hover:text-red-700 text-xs font-semibold">View All</button>
           </div>
@@ -39,11 +39,12 @@ export default function BottomSection() {
             <h3 className="text-red-900 font-semibold text-sm flex items-center gap-2">
               <LayoutTemplate className="w-4 h-4 text-red-500" />Templates
             </h3>
-            <button className="text-red-500 hover:text-red-700 text-xs font-semibold">View All</button>
+            <button onClick={() => onOpen("template")} className="text-red-500 hover:text-red-700 text-xs font-semibold">View All</button>
           </div>
           <div className="space-y-2">
             {templatesList.map(t => (
-              <div key={t.name} className="flex items-center gap-3 hover:bg-red-50 rounded-lg p-1.5 -mx-1.5 transition-colors cursor-pointer">
+              <div key={t.name} onClick={() => onOpen("template")}
+                className="flex items-center gap-3 hover:bg-red-50 rounded-lg p-1.5 -mx-1.5 transition-colors cursor-pointer">
                 <div className={`w-8 h-8 rounded-lg ${t.bg} flex items-center justify-center flex-shrink-0 shadow-sm`}>
                   <t.Icon className="w-4 h-4 text-white" />
                 </div>
@@ -62,7 +63,8 @@ export default function BottomSection() {
           <h3 className="text-red-900 font-semibold text-sm mb-3">Quick Actions</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2">
             {quickActions.map(a => (
-              <button key={a.label} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg ${a.bg} transition-colors text-left shadow-sm`}>
+              <button key={a.label} onClick={() => onOpen(a.modal)}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl ${a.bg} transition-all text-left shadow-sm hover:shadow-md hover:scale-[1.01]`}>
                 <a.Icon className="w-4 h-4 text-white flex-shrink-0" />
                 <div>
                   <div className="text-white text-xs font-semibold">{a.label}</div>

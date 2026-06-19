@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { PenLine } from "lucide-react";
+import { PenLine, Check } from "lucide-react";
 import { DATA_TYPES } from "../data/dashboardData";
 
-export default function WriteNFCCard() {
+export default function WriteNFCCard({ onOpen }) {
   const [selected, setSelected] = useState(0);
   const steps = ["Select Type", "Enter Data", "Tap NFC Card", "Verify & Complete"];
 
@@ -18,6 +18,7 @@ export default function WriteNFCCard() {
         </div>
       </div>
 
+      {/* Steps */}
       <div className="flex items-center gap-1 mt-3 mb-4 overflow-x-auto pb-1">
         {steps.map((step, i) => (
           <div key={step} className="flex items-center gap-1 flex-shrink-0">
@@ -33,6 +34,7 @@ export default function WriteNFCCard() {
       <p className="text-red-900 text-xs font-semibold mb-1">1. Select Data Type</p>
       <p className="text-red-400 text-xs mb-3">Choose the type of data you want to write</p>
 
+      {/* Type grid */}
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-1.5 mb-4">
         {DATA_TYPES.map((dt, i) => (
           <button key={dt.label} onClick={() => setSelected(i)}
@@ -45,6 +47,7 @@ export default function WriteNFCCard() {
         ))}
       </div>
 
+      {/* Advanced options */}
       <div className="border-t border-red-100 pt-3">
         <p className="text-red-900 text-xs font-semibold mb-2">Advanced Options</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-6">
@@ -55,6 +58,10 @@ export default function WriteNFCCard() {
             </label>
           ))}
         </div>
+        <button onClick={() => onOpen("write")}
+          className="mt-4 w-full bg-red-600 hover:bg-red-500 text-white text-xs font-bold py-2.5 rounded-xl transition-colors shadow-md shadow-red-200">
+          Write Card →
+        </button>
       </div>
     </div>
   );
