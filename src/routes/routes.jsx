@@ -17,9 +17,9 @@ import ContactUsPage       from "../pages/Contactuspage";
 import GeographicReportsPage  from "../pages/Geographicreportspage";
 import DeviceAnalyticsPage    from "../pages/Deviceanalyticspage";
 import ReviewsFeedbackPage    from "../pages/Reviewsfeedbackpage";
-import AdminSettingsPage      from "../pages/AdminSettingsPage";
-import AdminBillingPage       from "../pages/AdminBillingPage";
-import AdminHelpSupportPage   from "../pages/AdminHelpSupportPage";
+import AdminSettingsPage from "../pages/Adminsettingspage";
+import AdminBillingPage       from "../pages/Adminbillingpage";
+import AdminHelpSupportPage   from "../pages/Adminhelpsupportpage";
 
 export const ROUTES = {
   dashboard:          (nav) => <Dashboard />,
